@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOB_Monitoring_API", "MOB_Monitoring_API\MOB_Monitoring_API.csproj", "{817C16C3-2B94-48C3-AB0C-3BEC04A5DFFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{817C16C3-2B94-48C3-AB0C-3BEC04A5DFFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817C16C3-2B94-48C3-AB0C-3BEC04A5DFFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817C16C3-2B94-48C3-AB0C-3BEC04A5DFFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817C16C3-2B94-48C3-AB0C-3BEC04A5DFFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {117C27A0-3C88-4AB4-A3EB-BF58F5994654}
+	EndGlobalSection
+EndGlobal

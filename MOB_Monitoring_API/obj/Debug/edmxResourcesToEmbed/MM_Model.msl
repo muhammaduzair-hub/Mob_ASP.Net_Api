@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MOB_MonitoringModelStoreContainer" CdmEntityContainer="MOB_MonitoringEntities">
+    <EntitySetMapping Name="Ariel_shots">
+      <EntityTypeMapping TypeName="MOB_MonitoringModel.Ariel_shots">
+        <MappingFragment StoreEntitySet="Ariel_shots">
+          <ScalarProperty Name="pspeed" ColumnName="pspeed" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="Pname" ColumnName="Pname" />
+          <ScalarProperty Name="Paddress" ColumnName="Paddress" />
+          <ScalarProperty Name="Platitude" ColumnName="Platitude" />
+          <ScalarProperty Name="Plongitude" ColumnName="Plongitude" />
+          <ScalarProperty Name="Ptime" ColumnName="Ptime" />
+          <ScalarProperty Name="mid" ColumnName="mid" />
+          <ScalarProperty Name="pmobquantity" ColumnName="pmobquantity" />
+          <ScalarProperty Name="mpic_no" ColumnName="mpic_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="MOB_MonitoringModel.Device">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="did" ColumnName="did" />
+          <ScalarProperty Name="dname" ColumnName="dname" />
+          <ScalarProperty Name="flag" ColumnName="flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employees">
+      <EntityTypeMapping TypeName="MOB_MonitoringModel.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="eemail" ColumnName="eemail" />
+          <ScalarProperty Name="epass" ColumnName="epass" />
+          <ScalarProperty Name="ename" ColumnName="ename" />
+          <ScalarProperty Name="edesg" ColumnName="edesg" />
+          <ScalarProperty Name="flag" ColumnName="flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MOBs">
+      <EntityTypeMapping TypeName="MOB_MonitoringModel.MOB">
+        <MappingFragment StoreEntitySet="MOB">
+          <ScalarProperty Name="threshhold" ColumnName="threshhold" />
+          <ScalarProperty Name="mid" ColumnName="mid" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="ms_time" ColumnName="ms_time" />
+          <ScalarProperty Name="me_time" ColumnName="me_time" />
+          <ScalarProperty Name="mdesc" ColumnName="mdesc" />
+          <ScalarProperty Name="mflag" ColumnName="mflag" />
+          <ScalarProperty Name="mdevice" ColumnName="mdevice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zones">
+      <EntityTypeMapping TypeName="MOB_MonitoringModel.zone">
+        <MappingFragment StoreEntitySet="zones">
+          <ScalarProperty Name="zid" ColumnName="zid" />
+          <ScalarProperty Name="zlatitude" ColumnName="zlatitude" />
+          <ScalarProperty Name="zlongitude" ColumnName="zlongitude" />
+          <ScalarProperty Name="zname" ColumnName="zname" />
+          <ScalarProperty Name="zflag" ColumnName="zflag" />
+          <ScalarProperty Name="employee" ColumnName="employee" />
+          <ScalarProperty Name="km" ColumnName="km" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zone_detail">
+      <EntityTypeMapping TypeName="MOB_MonitoringModel.zone_detail">
+        <MappingFragment StoreEntitySet="zone_detail">
+          <ScalarProperty Name="reachtime" ColumnName="reachtime" />
+          <ScalarProperty Name="pmobquantity" ColumnName="pmobquantity" />
+          <ScalarProperty Name="zid" ColumnName="zid" />
+          <ScalarProperty Name="mid" ColumnName="mid" />
+          <ScalarProperty Name="mstatus" ColumnName="mstatus" />
+          <ScalarProperty Name="mtime" ColumnName="mtime" />
+          <ScalarProperty Name="mlongitude" ColumnName="mlongitude" />
+          <ScalarProperty Name="mlatitude" ColumnName="mlatitude" />
+          <ScalarProperty Name="zdid" ColumnName="zdid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

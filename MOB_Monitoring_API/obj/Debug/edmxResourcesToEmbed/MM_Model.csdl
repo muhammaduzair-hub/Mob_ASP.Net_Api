@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MOB_MonitoringModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ariel_shots">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Paddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Platitude" Type="Double" />
+    <Property Name="Plongitude" Type="Double" />
+    <Property Name="Ptime" Type="DateTime" Precision="3" />
+    <Property Name="mid" Type="Int32" />
+    <Property Name="pmobquantity" Type="Int32" />
+    <Property Name="mpic_no" Type="Int32" />
+    <NavigationProperty Name="MOB" Relationship="Self.FK__Ariel_shots__mid__44FF419A" FromRole="Ariel_shots" ToRole="MOB" />
+    <Property Name="pspeed" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="flag" Type="Int32" />
+    <NavigationProperty Name="MOBs" Relationship="Self.FK__MOB__mdevice__3D5E1FD2" FromRole="Devices" ToRole="MOB" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="eemail" />
+    </Key>
+    <Property Name="eemail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="epass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ename" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="edesg" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="flag" Type="Boolean" />
+    <NavigationProperty Name="zones" Relationship="MOB_MonitoringModel.FK__zones__employee__619B8048" FromRole="employee" ToRole="zone" />
+  </EntityType>
+  <EntityType Name="MOB">
+    <Key>
+      <PropertyRef Name="mid" />
+    </Key>
+    <Property Name="mid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ms_time" Type="DateTime" Precision="3" />
+    <Property Name="me_time" Type="DateTime" Precision="3" />
+    <Property Name="mdesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mflag" Type="Int32" />
+    <Property Name="mdevice" Type="Int32" />
+    <NavigationProperty Name="Ariel_shots" Relationship="Self.FK__Ariel_shots__mid__44FF419A" FromRole="MOB" ToRole="Ariel_shots" />
+    <NavigationProperty Name="Device" Relationship="Self.FK__MOB__mdevice__3D5E1FD2" FromRole="MOB" ToRole="Devices" />
+    <Property Name="threshhold" Type="Int32" />
+    <NavigationProperty Name="zone_detail" Relationship="MOB_MonitoringModel.FK__zone_detail__mid__160F4887" FromRole="MOB" ToRole="zone_detail" />
+  </EntityType>
+  <EntityType Name="zone">
+    <Key>
+      <PropertyRef Name="zid" />
+    </Key>
+    <Property Name="zid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="zlatitude" Type="Double" />
+    <Property Name="zlongitude" Type="Double" />
+    <Property Name="zname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="zflag" Type="Int32" />
+    <Property Name="employee" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="km" Type="Int32" />
+    <NavigationProperty Name="employee1" Relationship="MOB_MonitoringModel.FK__zones__employee__619B8048" FromRole="zone" ToRole="employee" />
+    <NavigationProperty Name="zone_detail" Relationship="MOB_MonitoringModel.FK__zone_detail__zid__17036CC0" FromRole="zone" ToRole="zone_detail" />
+  </EntityType>
+  <Association Name="FK__Ariel_shots__mid__44FF419A">
+    <End Role="MOB" Type="Self.MOB" Multiplicity="0..1" />
+    <End Role="Ariel_shots" Type="Self.Ariel_shots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOB">
+        <PropertyRef Name="mid" />
+      </Principal>
+      <Dependent Role="Ariel_shots">
+        <PropertyRef Name="mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOB__mdevice__3D5E1FD2">
+    <End Role="Devices" Type="Self.Device" Multiplicity="0..1" />
+    <End Role="MOB" Type="Self.MOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="did" />
+      </Principal>
+      <Dependent Role="MOB">
+        <PropertyRef Name="mdevice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MOB_MonitoringEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ariel_shots" EntityType="Self.Ariel_shots" />
+    <EntitySet Name="Devices" EntityType="Self.Device" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="MOBs" EntityType="Self.MOB" />
+    <EntitySet Name="zones" EntityType="Self.zone" />
+    <AssociationSet Name="FK__Ariel_shots__mid__44FF419A" Association="Self.FK__Ariel_shots__mid__44FF419A">
+      <End Role="MOB" EntitySet="MOBs" />
+      <End Role="Ariel_shots" EntitySet="Ariel_shots" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOB__mdevice__3D5E1FD2" Association="Self.FK__MOB__mdevice__3D5E1FD2">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="MOB" EntitySet="MOBs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zones__employee__619B8048" Association="MOB_MonitoringModel.FK__zones__employee__619B8048">
+      <End Role="employee" EntitySet="employees" />
+      <End Role="zone" EntitySet="zones" />
+    </AssociationSet>
+    <EntitySet Name="zone_detail" EntityType="MOB_MonitoringModel.zone_detail" />
+    <AssociationSet Name="FK__zone_detail__mid__160F4887" Association="MOB_MonitoringModel.FK__zone_detail__mid__160F4887">
+      <End Role="MOB" EntitySet="MOBs" />
+      <End Role="zone_detail" EntitySet="zone_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zone_detail__zid__17036CC0" Association="MOB_MonitoringModel.FK__zone_detail__zid__17036CC0">
+      <End Role="zone" EntitySet="zones" />
+      <End Role="zone_detail" EntitySet="zone_detail" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__zones__employee__619B8048">
+    <End Type="MOB_MonitoringModel.employee" Role="employee" Multiplicity="0..1" />
+    <End Type="MOB_MonitoringModel.zone" Role="zone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="eemail" />
+      </Principal>
+      <Dependent Role="zone">
+        <PropertyRef Name="employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="zone_detail">
+    <Key>
+      <PropertyRef Name="zdid" />
+    </Key>
+    <Property Name="zdid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mlatitude" Type="Double" />
+    <Property Name="mlongitude" Type="Double" />
+    <Property Name="mtime" Type="DateTime" Precision="3" />
+    <Property Name="mstatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="mid" Type="Int32" />
+    <Property Name="zid" Type="Int32" />
+    <Property Name="pmobquantity" Type="Int32" />
+    <NavigationProperty Name="MOB" Relationship="MOB_MonitoringModel.FK__zone_detail__mid__160F4887" FromRole="zone_detail" ToRole="MOB" />
+    <NavigationProperty Name="zone" Relationship="MOB_MonitoringModel.FK__zone_detail__zid__17036CC0" FromRole="zone_detail" ToRole="zone" />
+    <Property Name="reachtime" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__zone_detail__mid__160F4887">
+    <End Type="MOB_MonitoringModel.MOB" Role="MOB" Multiplicity="0..1" />
+    <End Type="MOB_MonitoringModel.zone_detail" Role="zone_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOB">
+        <PropertyRef Name="mid" />
+      </Principal>
+      <Dependent Role="zone_detail">
+        <PropertyRef Name="mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zone_detail__zid__17036CC0">
+    <End Type="MOB_MonitoringModel.zone" Role="zone" Multiplicity="0..1" />
+    <End Type="MOB_MonitoringModel.zone_detail" Role="zone_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zone">
+        <PropertyRef Name="zid" />
+      </Principal>
+      <Dependent Role="zone_detail">
+        <PropertyRef Name="zid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

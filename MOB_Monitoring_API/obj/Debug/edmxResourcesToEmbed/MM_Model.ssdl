@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MOB_MonitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ariel_shots">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pname" Type="varchar" MaxLength="100" />
+    <Property Name="Paddress" Type="varchar" MaxLength="200" />
+    <Property Name="Platitude" Type="float" />
+    <Property Name="Plongitude" Type="float" />
+    <Property Name="Ptime" Type="datetime" />
+    <Property Name="mid" Type="int" />
+    <Property Name="pmobquantity" Type="int" />
+    <Property Name="mpic_no" Type="int" />
+    <Property Name="pspeed" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Devices">
+    <Key>
+      <PropertyRef Name="did" />
+    </Key>
+    <Property Name="did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dname" Type="varchar" MaxLength="30" />
+    <Property Name="flag" Type="int" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="eemail" />
+    </Key>
+    <Property Name="eemail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="epass" Type="varchar" MaxLength="50" />
+    <Property Name="ename" Type="varchar" MaxLength="30" />
+    <Property Name="edesg" Type="varchar" MaxLength="10" />
+    <Property Name="flag" Type="bit" />
+  </EntityType>
+  <EntityType Name="MOB">
+    <Key>
+      <PropertyRef Name="mid" />
+    </Key>
+    <Property Name="mid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mname" Type="varchar" MaxLength="30" />
+    <Property Name="ms_time" Type="datetime" />
+    <Property Name="me_time" Type="datetime" />
+    <Property Name="mdesc" Type="varchar" MaxLength="100" />
+    <Property Name="mflag" Type="int" />
+    <Property Name="mdevice" Type="int" />
+    <Property Name="threshhold" Type="int" />
+  </EntityType>
+  <EntityType Name="zone_detail">
+    <Key>
+      <PropertyRef Name="zdid" />
+    </Key>
+    <Property Name="zdid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mlatitude" Type="float" />
+    <Property Name="mlongitude" Type="float" />
+    <Property Name="mtime" Type="datetime" />
+    <Property Name="mstatus" Type="varchar" MaxLength="30" />
+    <Property Name="mid" Type="int" />
+    <Property Name="zid" Type="int" />
+    <Property Name="pmobquantity" Type="int" />
+    <Property Name="reachtime" Type="int" />
+  </EntityType>
+  <EntityType Name="zones">
+    <Key>
+      <PropertyRef Name="zid" />
+    </Key>
+    <Property Name="zid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="zlatitude" Type="float" />
+    <Property Name="zlongitude" Type="float" />
+    <Property Name="zname" Type="varchar" MaxLength="50" />
+    <Property Name="zflag" Type="int" />
+    <Property Name="km" Type="int" />
+    <Property Name="employee" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Ariel_shots__mid__44FF419A">
+    <End Role="MOB" Type="Self.MOB" Multiplicity="0..1" />
+    <End Role="Ariel_shots" Type="Self.Ariel_shots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOB">
+        <PropertyRef Name="mid" />
+      </Principal>
+      <Dependent Role="Ariel_shots">
+        <PropertyRef Name="mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MOB__mdevice__3D5E1FD2">
+    <End Role="Devices" Type="Self.Devices" Multiplicity="0..1" />
+    <End Role="MOB" Type="Self.MOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devices">
+        <PropertyRef Name="did" />
+      </Principal>
+      <Dependent Role="MOB">
+        <PropertyRef Name="mdevice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zone_detail__mid__160F4887">
+    <End Role="MOB" Type="Self.MOB" Multiplicity="0..1" />
+    <End Role="zone_detail" Type="Self.zone_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MOB">
+        <PropertyRef Name="mid" />
+      </Principal>
+      <Dependent Role="zone_detail">
+        <PropertyRef Name="mid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zone_detail__zid__17036CC0">
+    <End Role="zones" Type="Self.zones" Multiplicity="0..1" />
+    <End Role="zone_detail" Type="Self.zone_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zones">
+        <PropertyRef Name="zid" />
+      </Principal>
+      <Dependent Role="zone_detail">
+        <PropertyRef Name="zid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__zones__employee__619B8048">
+    <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+    <End Role="zones" Type="Self.zones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee">
+        <PropertyRef Name="eemail" />
+      </Principal>
+      <Dependent Role="zones">
+        <PropertyRef Name="employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MOB_MonitoringModelStoreContainer">
+    <EntitySet Name="Ariel_shots" EntityType="Self.Ariel_shots" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MOB" EntityType="Self.MOB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zone_detail" EntityType="Self.zone_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zones" EntityType="Self.zones" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Ariel_shots__mid__44FF419A" Association="Self.FK__Ariel_shots__mid__44FF419A">
+      <End Role="MOB" EntitySet="MOB" />
+      <End Role="Ariel_shots" EntitySet="Ariel_shots" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MOB__mdevice__3D5E1FD2" Association="Self.FK__MOB__mdevice__3D5E1FD2">
+      <End Role="Devices" EntitySet="Devices" />
+      <End Role="MOB" EntitySet="MOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zone_detail__mid__160F4887" Association="Self.FK__zone_detail__mid__160F4887">
+      <End Role="MOB" EntitySet="MOB" />
+      <End Role="zone_detail" EntitySet="zone_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zone_detail__zid__17036CC0" Association="Self.FK__zone_detail__zid__17036CC0">
+      <End Role="zones" EntitySet="zones" />
+      <End Role="zone_detail" EntitySet="zone_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__zones__employee__619B8048" Association="Self.FK__zones__employee__619B8048">
+      <End Role="employee" EntitySet="employee" />
+      <End Role="zones" EntitySet="zones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

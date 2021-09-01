@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="802e1242e5274761a8c5262a3fc1c603" Name="Diagram1">
+        <EntityTypeShape EntityType="MOB_MonitoringModel.Ariel_shots" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOB_MonitoringModel.Device" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOB_MonitoringModel.employee" Width="1.5" PointX="7.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOB_MonitoringModel.MOB" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MOB_MonitoringModel.zone" Width="1.5" PointX="9.5" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="MOB_MonitoringModel.FK__Ariel_shots__mid__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="MOB_MonitoringModel.FK__MOB__mdevice__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="MOB_MonitoringModel.FK__zones__employee__619B8048" />
+        <EntityTypeShape EntityType="MOB_MonitoringModel.zone_detail" Width="1.5" PointX="11.75" PointY="1.75" />
+        <AssociationConnector Association="MOB_MonitoringModel.FK__zone_detail__mid__160F4887" />
+        <AssociationConnector Association="MOB_MonitoringModel.FK__zone_detail__zid__17036CC0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
